@@ -1,0 +1,70 @@
+{% extends 'layout.html' %} {% block title %} Home {% endblock %} {% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="">
+      {% block body %}
+      <div class="container">
+        <div class="starter-template">
+          <h1>Data Temperatur dan Pressure Turbin</h1>
+
+          <!-- Coba-coba -->
+
+          <a href="/refreshdata" class="btn btn-success btn-lg" onclick="return confirm('Yakin ingin refresh data?')">Insert Data</a>
+
+          <!-- Akhir coba-coba -->
+
+          <table class="table table-striped" style="background-color: rgb(247, 247, 247)">
+            <thead>
+              <tr>
+                <td>id</td>
+
+                <td>Date Time</td>
+                <td>Temperatur Inlet</td>
+                <td>Temperatur Outlet</td>
+                <td>Pressure Inlet</td>
+                <td>Pressure Outle</td>
+                <td>Status</td>
+                <td>Aksi</td>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for item in monitoring1 %}
+
+              <tr>
+                <td>{{item.id}}</td>
+
+                <td>{{ item.datetime }}</td>
+                <td>{{ item.temperatur_inlet }}</td>
+                <td>{{ item.temperatur_outlet }}</td>
+                <td>{{ item.pressure_inlet }}</td>
+                <td>{{ item.pressure_outlet }}</td>
+                <td>{{ item.status }}</td>
+
+                <td>
+                  <a href="/hapusdataac/{{ item.id }}" class="btn btn-danger btn-xs" onclick="return confirm('Yakin ingin hapus?')">Hapus</a>
+                </td>
+                <!-- Modal -->
+
+                {% else %}
+              </tr>
+
+              <tr>
+                <td colspan="3">Unbelievable. No entries here so far</td>
+              </tr>
+
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- /.container -->
+
+      {% endblock %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
